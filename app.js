@@ -6,12 +6,13 @@ var logger = require('morgan');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const crypto = require('crypto');
+require('dotenv').config()
 
 const sessionStore = new MySQLStore({
-  host: 'db4free.net',
-  user: 'd0ug14sm',
-  password: 'C9CCSs6C8P3-MTt',
-  database: 'db_etica'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 var indexRouter = require('./routes/index');

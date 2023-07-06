@@ -1,15 +1,16 @@
 var mysql = require('mysql');
 const bcrypt = require('bcrypt');
+require('dotenv').config()
 
 const saltRounds = 10;
 var connection;
 
 function connectDataBase() {
     connection = mysql.createConnection({
-        host: 'db4free.net',
-        user: 'd0ug14sm',
-        password: 'C9CCSs6C8P3-MTt',
-        database: 'db_etica'
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
     });
 }
 
