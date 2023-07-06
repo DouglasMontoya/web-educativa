@@ -1,0 +1,261 @@
+<%- include layouts/header.ejs %> <% if(mod_compl == 5) {%> <%- include
+layouts/modal-points.ejs %> <%}%>
+
+<div class="container">
+  <section class="section sectionContent">
+    <h1 class="title">Modulo 6 - Responsabilidad Profesional</h1>
+    <div class="cont is-flex is-justify-content-center">
+      <img
+        src="/images/info2.jpg"
+        alt="Imagen que representa lo que es la etica profesional"
+        width="400"
+        class="mt-4"
+        style="border-radius: 10px"
+      />
+    </div>
+    <% if(mod_compl == 5) {%>
+    <div class="block">
+      <button
+        class="button is-primary btnTest js-modal-trigger"
+        data-target="modal-js-example"
+      >
+        Prueba tu Conocimiento
+      </button>
+    </div>
+    <%}%>
+  </section>
+
+  <% if(mod_compl == 5) {%>
+  <section class="section sectionTest has-background-primary mt-3">
+    <h1 class="title">Prueba tu conocimiento</h1>
+    <br />
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half box is-flex-direction-column containerTest">
+          <h4 class="title is-4">Responde las siguientes preguntas</h4>
+          <h6 class="title is-6">
+            1. ¿Qué tipo de responsabilidad se refiere a la necesidad de
+            remediar y compensar las consecuencias de un error?
+          </h6>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="answer1" id="ans1" />
+              a&#41; Responsabilidad social
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer1" id="ans2" />
+              b&#41; Responsabilidad gremial
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer1" id="ans3" />
+              c&#41; Responsabilidad administrativa
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer1" id="ans4" />
+              d&#41; Responsabilidad civil
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer1" id="ans5" />
+              e&#41; Responsabilidad penal
+            </label>
+          </div>
+          <br />
+          <h6 class="title is-6">
+            2. ¿Qué tipo de responsabilidad implica priorizar el bienestar de la
+            comunidad sobre los intereses del cliente o la empresa?
+          </h6>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="answer2" id="ans6" />
+              a&#41; Responsabilidad social
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer2" id="ans7" />
+              b&#41; Responsabilidad gremial
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer2" id="ans8" />
+              c&#41; Responsabilidad administrativa
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer2" id="ans9" />
+              d&#41; Responsabilidad civil
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer2" id="ans10" />
+              e&#41; Responsabilidad penal
+            </label>
+          </div>
+          <br />
+          <h6 class="title is-6">
+            3. ¿Qué tipo de responsabilidad surge cuando alguien en un cargo
+            directivo comete una contravención administrativa?
+          </h6>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="answer3" id="ans11" />
+              a&#41; Responsabilidad social
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer3" id="ans12" />
+              b&#41; Responsabilidad gremial
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer3" id="ans13" />
+              c&#41; Responsabilidad administrativa
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer3" id="ans14" />
+              d&#41; Responsabilidad civil
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer3" id="ans15" />
+              e&#41; Responsabilidad penal
+            </label>
+          </div>
+          <br />
+          <h6 class="title is-6">
+            4. ¿Qué tipo de responsabilidad implica la obligación de colegiación
+            de ciertas profesiones para proteger a la colectividad?
+          </h6>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="answer4" id="ans16" />
+              a&#41; Responsabilidad social
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer4" id="ans17" />
+              b&#41; Responsabilidad gremial
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer4" id="ans18" />
+              c&#41; Responsabilidad administrativa
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer4" id="ans19" />
+              d&#41; Responsabilidad civil
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer4" id="ans20" />
+              e&#41; Responsabilidad penal
+            </label>
+          </div>
+          <br />
+          <h6 class="title is-6">
+            5. ¿Qué tipo de responsabilidad conlleva las consecuencias legales
+            de cometer un acto definido como delito por la ley penal?
+          </h6>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="answer5" id="ans21" />
+              a&#41; Responsabilidad social
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer5" id="ans22" />
+              b&#41; Responsabilidad gremial
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer5" id="ans23" />
+              c&#41; Responsabilidad administrativa
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer5" id="ans24" />
+              d&#41; Responsabilidad civil
+            </label>
+            <label class="radio">
+              <input type="radio" name="answer5" id="ans25" />
+              e&#41; Responsabilidad penal
+            </label>
+          </div>
+          <br />
+          <button class="button is-info btnSend">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%}%>
+</div>
+<% if(mod_compl == 5) {%>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/trigger-modal.js"></script>
+<script>
+  $(".btnTest").on("click", () => {
+    $(".sectionContent").remove();
+    $(".sectionTest").css("display", "block");
+  });
+  $(".btnSend").on("click", () => {
+    let answers = [
+      $("#ans1").is(":checked"),
+      $("#ans2").is(":checked"),
+      $("#ans3").is(":checked"),
+      $("#ans4").is(":checked"),
+      $("#ans5").is(":checked"),
+      $("#ans6").is(":checked"),
+      $("#ans7").is(":checked"),
+      $("#ans8").is(":checked"),
+      $("#ans9").is(":checked"),
+      $("#ans10").is(":checked"),
+      $("#ans11").is(":checked"),
+      $("#ans12").is(":checked"),
+      $("#ans13").is(":checked"),
+      $("#ans14").is(":checked"),
+      $("#ans15").is(":checked"),
+      $("#ans16").is(":checked"),
+      $("#ans17").is(":checked"),
+      $("#ans18").is(":checked"),
+      $("#ans19").is(":checked"),
+      $("#ans20").is(":checked"),
+      $("#ans21").is(":checked"),
+      $("#ans22").is(":checked"),
+      $("#ans23").is(":checked"),
+      $("#ans24").is(":checked"),
+      $("#ans25").is(":checked"),
+    ];
+    $(".btnSend").addClass("is-loading");
+    $.ajax({
+      url: "/modules/module-six",
+      type: "POST",
+      data: {
+        answers: answers,
+      },
+      success: function (response) {
+        $(".btnSend").removeClass("is-loading");
+        if (!response.correct) {
+          $("#score").text(`${response.score}`);
+          $(
+            '<h3 class="title is-3 has-text-danger msgWrong">Respuesta Incorrecta, vuelva a intentarlo</h3>'
+          ).appendTo(".containerTest");
+          setTimeout(() => {
+            $(".msgWrong").remove();
+          }, 1500);
+        } else {
+          $("#score").text(`${response.score}`);
+          $(
+            `
+            <h3 class="title is-3 has-text-primary mt-3">Felicidades ganaste 100 puntos y pasaste este modulo</h3>
+            `
+          ).appendTo(".containerTest");
+          $(
+            '<a class="button is-link" href="/modules/module-seven">Siguiente Modulo</a>'
+          ).appendTo(".sectionTest");
+          $(".navbar-dropdown").empty();
+          $(`
+            <a class="navbar-item" href="/"> Inicio </a>
+            <hr class="navbar-divider" />
+            <a class="navbar-item" href="/modules/module-one"> Modulo 1 </a>
+            <a class="navbar-item" href="/modules/module-two"> Modulo 2 </a>
+            <a class="navbar-item" href="/modules/module-three"> Modulo 3 </a>
+            <a class="navbar-item" href="/modules/module-four"> Modulo 4 </a>
+            <a class="navbar-item" href="/modules/module-five"> Modulo 5 </a>
+            <a class="navbar-item" href="/modules/module-six"> Modulo 6 </a>
+            <a class="navbar-item" href="/modules/module-seven"> Modulo 7 </a>
+            `).appendTo(".navbar-dropdown");
+        }
+      },
+      error: function (response) {
+        alert("Error al procesar los datos");
+      },
+    });
+  });
+</script>
+<%}%> <%- include layouts/footer.ejs %>

@@ -1,0 +1,127 @@
+<%- include layouts/header.ejs %>
+<div class="container">
+  <section class="hero is-fullheight">
+    <div class="hero-body is-flex is-justify-content-center">
+      <form class="columns is-flex is-flex-direction-column box showAnim" method="post" id="formRegister">
+        <div
+          class="column"
+        >
+          <h2 class="title is-2 mt-2 has-text-centered"><%= title %></h2>
+        </div>
+        <div class="column is-flex is-flex-direction-column is-align-items-center">
+          <p class="mb-2">Elige una opcion:</p>
+          <div>
+            <label class="radio">
+              <input type="radio" name="occupation" value="teacher">
+              Maestro</label>
+              <label class="radio">
+                <input type="radio" name="occupation" value="student" checked>
+                Estudiante</label>
+          </div>
+        </div>
+        <div class="column">
+          <label for="email">Correo</label>
+          <input
+            class="input is-primary"
+            type="email"
+            placeholder="Correo"
+            name="email"
+            maxlength="50"
+            autocomplete="email"
+            id="email"
+            required
+          />
+        </div>
+        <div class="column">
+          <label for="dni">Cedula</label>
+          <input
+            class="input is-primary"
+            type="number"
+            placeholder="Cedula"
+            name="dni"
+            min="0"
+            id="dni"
+            required
+          />
+        </div>
+        <div class="column">
+          <label for="name">Nombres</label>
+          <input
+            class="input is-primary"
+            type="text"
+            placeholder="Nombres"
+            name="nameusr"
+            maxlength="50"
+            id="name"
+            autocomplete="name"
+            required
+          />
+        </div>
+        <div class="column">
+          <label for="surname">Apellidos</label>
+          <input
+            class="input is-primary"
+            type="text"
+            placeholder="Nombres"
+            name="surname"
+            maxlength="50"
+            id="surname"
+            required
+          />
+        </div>
+        <div class="column">
+          <label for="pass">Contraseña</label>
+          <div class="password-container">
+              <input
+            class="input is-primary password"
+            id="pass"
+            type="password"
+            placeholder="Contraseña"
+            name="pass"
+            minlength="8"
+            maxlength="20"
+            required
+          />
+          <img src="images/eye_open.svg" alt="Ver Contraseña" id="togglePassword">
+          </div>
+        </div>
+        <div class="column">
+          <label for="repPass">Repetir Contraseña</label>
+          <input
+            class="input is-primary password"
+            id="repPass"
+            type="password"
+            placeholder="Repetir Contraseña"
+            name="repeatPass"
+            minlength="8"
+            maxlength="20"
+            required
+          />
+        </div>
+        <p class="has-text-danger has-text-centered msgPassError">Las contraseñas no coinciden</p>
+        <p class="has-text-primary has-text-centered msgPassMatch">Las contraseñas coinciden</p>
+        <p class="has-text-danger has-text-centered msgEmailError">Ya existe un usuario con ese correo</p>
+        <p class="has-text-danger has-text-centered msgDniError">Ya existe un usuario con esa cedula</p>
+        <div class="column">
+          <button class="button is-primary is-fullwidth btnSingup" type="submit">
+            Registrarse
+          </button>
+        </div>
+        <div class="has-text-centered">
+          <p class="is-size-7">
+            ¿Ya tienes una cuenta?
+            <a href="/login" class="has-text-primary">Iniciar Sesion</a>
+          </p>
+        </div>
+      </form>
+      <div id="regSuccess" class="has-text-centered">
+        <h2 class="title is-2 has-text-primary">Registro Exitoso</h2>
+        <a class="button is-primary is-outlined" href="/login" >Iniciar Sesion</a>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/main.js"></script>
+<%- include layouts/footer.ejs %>
+    

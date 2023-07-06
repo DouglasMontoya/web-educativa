@@ -1,0 +1,156 @@
+<%- include layouts/header.ejs %> <% if(mod_compl == 1) {%> <%- include
+layouts/modal-points.ejs %> <%}%>
+
+<div class="container">
+  <section class="section sectionContent">
+    <h2 class="title is-2">Modulo 2 - Etica y Moral</h2>
+    <p>
+      A continuacion se te mostrara un video en el cual tienes que prestar mucha
+      atencion para entenderlo y al final puedas pasar la prueba de lo que
+      aprendiste en este modulo.
+    </p>
+    <div class="container mt-6">
+      <div class="columns">
+        <div class="column">
+          <div class="is-flex is-justify-content-center">
+            <video src="/videos/video1.mp4" class="video" controls></video>
+          </div>
+          <% if(mod_compl == 1) {%>
+          <div class="block">
+            <button
+              class="button is-primary mt-3 btnTest js-modal-trigger"
+              data-target="modal-js-example"
+            >
+              Prueba tu Conocimiento
+            </button>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <% if(mod_compl == 1) {%>
+  <section class="section sectionTest has-background-primary mt-3">
+    <h1 class="title">Prueba tu conocimiento</h1>
+    <div class="container">
+      <form class="box formTestOne">
+        <h2><strong>1- La etica y la moral:</strong></h2>
+        <br />
+        <div class="field">
+          <input type="radio" name="op1" id="op1" />
+          <label for="op1"
+            >Es un estudio filosofico y un conjunto de normas</label
+          >
+        </div>
+        <div class="field">
+          <input type="radio" name="op1" id="op2" />
+          <label for="op2">Es la ciencia que estudia la naturaleza</label>
+        </div>
+        <div class="field">
+          <input type="radio" name="op1" id="op3" />
+          <label for="op3"
+            >Son un conjunto de normas para la creacion de software</label
+          >
+        </div>
+        <br />
+        <h2>
+          <strong
+            >2- ¿Es cierto que la etica es una reflexion filosofica sobre
+            nuestro comportamiento moral?</strong
+          >
+        </h2>
+        <br />
+        <div class="field">
+          <input type="radio" name="op2" id="op4" />
+          <label for="op4">Si, si lo es</label>
+        </div>
+        <div class="field">
+          <input type="radio" name="op2" id="op5" />
+          <label for="op5">No, no lo es</label>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button class="button is-info buttonSubmit" type="submit">
+              Enviar
+            </button>
+          </div>
+        </div>
+        <br />
+      </form>
+    </div>
+  </section>
+  <%}%>
+</div>
+<% if(mod_compl == 1) {%>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/trigger-modal.js"></script>
+
+<script>
+
+  $(".btnTest").on("click", () => {
+    $(".sectionContent").remove();
+    $(".sectionTest").css("display", "block");
+  });
+  $(".formTestOne").on("submit", (e) => {
+    e.preventDefault();
+
+    $('.buttonSubmit').addClass('is-loading');
+
+    let inputsRadio = [
+      $("#op1").is(":checked"),
+      $("#op2").is(":checked"),
+      $("#op3").is(":checked"),
+      $("#op4").is(":checked"),
+      $("#op5").is(":checked"),
+    ];
+    console.log(inputsRadio);
+    $.ajax({
+      url: "/modules/module-two",
+      type: "POST",
+      data: {
+        inputsRd: inputsRadio,
+      },
+      success: function (response) {
+        $('.buttonSubmit').removeClass('is-loading');
+        if (response.error) {
+          alert("Error al hacer muchas solicitudes");
+        } else if (!response.answer) {
+          $(
+            '<h3 class="title is-3 has-text-danger" id="msgWrong">Respuesta incorrecta. Vuelva a intentarlo</h3>'
+          ).appendTo(".formTestOne");
+          setTimeout(() => {
+            $("#msgWrong").remove();
+          }, 2000);
+          $("#score").text(`${response.score}`);
+        } else if (response.answer) {
+          $(
+            '<h3 class="title is-3 has-text-primary">Felicidades ganaste 100 puntos y pasaste este modulo</h3>'
+          ).appendTo(".formTestOne");
+          $("#score").text(`${response.score}`);
+          $(".navbar-dropdown").empty();
+          $(`
+          <a class="navbar-item" href="/"> Inicio </a>
+          <hr class="navbar-divider" />
+          <a class="navbar-item" href="/modules/module-one"> Modulo 1 </a>
+          <a class="navbar-item" href="/modules/module-two"> Modulo 2 </a>
+          <a class="navbar-item" href="/modules/module-three"> Modulo 3 </a>
+          <a class="navbar-item <%= mod_compl <=2 ? 'has-background-grey-lighter' : '' %>"> Modulo 4 </a>
+          <a class="navbar-item <%= mod_compl <=3 ? 'has-background-grey-lighter' : '' %>"> Modulo 5 </a>
+          <a class="navbar-item <%= mod_compl <=4 ? 'has-background-grey-lighter' : '' %>"> Modulo 6 </a>
+          <a class="navbar-item <%= mod_compl <=5 ? 'has-background-grey-lighter' : '' %>"> Modulo 7 </a>
+          `).appendTo(".navbar-dropdown");
+          $(
+            '<a class="button is-link mt-3" href="/modules/module-three">Siguiente Modulo</a>'
+          ).appendTo(".sectionTest");
+        }
+      },
+      error: function (response) {
+        alert("Error al procesar los datos");
+      },
+    });
+  });
+</script>
+<%}%>
+
+<%- include layouts/footer.ejs %>

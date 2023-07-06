@@ -1,0 +1,54 @@
+<%- include layouts/header.ejs %>
+<div class="container">
+  <section class="hero is-fullheight">
+    <div class="hero-body is-flex is-justify-content-center">
+      <form class="columns is-flex is-flex-direction-column box showAnim" id="formLogin">
+        <div class="column">
+          <h2 class="title is-2 mt-2 has-text-centered"><%= title %></h2>
+        </div>
+        <div class="column">
+          <label for="email">Correo</label>
+          <input
+            class="input is-primary"
+            type="text"
+            placeholder="Correo"
+            name="email"
+            maxlength="50"
+            autocomplete="email"
+            id="email"
+            required
+          />
+        </div>
+        <div class="column">
+          <label for="pass">Contraseña</label>
+          <div class="password-container">
+            <input
+          class="input is-primary password"
+          type="password"
+          placeholder="Contraseña"
+          name="pass"
+          maxlength="20"
+          id="pass"
+          required
+          />
+          <img src="images/eye_open.svg" alt="Ver Contraseña" id="togglePassword">
+        </div>
+        <div class="column">
+          <button class="button is-primary is-fullwidth" type="submit" id="btnLogin">
+            Iniciar
+          </button>
+        </div>
+        <div class="has-text-centered">
+          <p class="is-size-7">
+            ¿Aun no tiene una cuenta?
+            <a href="/register" class="has-text-primary">Registrarse</a>
+          </p>
+        </div>
+        <p class="has-text-danger has-text-centered msgUserNoExist">Correo o contraseña incorrectos</p>
+      </form>
+    </div>
+  </section>
+</div>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/main.js"></script>
+<%- include layouts/footer.ejs %>

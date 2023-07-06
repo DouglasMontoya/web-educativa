@@ -1,0 +1,256 @@
+<%- include layouts/header.ejs %> <% if(mod_compl == 2) {%> <%- include
+layouts/modal-points.ejs %> <%}%>
+
+<div class="container">
+  <section class="section sectionContent">
+    <h2 class="title is-2">Modulo 3 - Tareas de la Etica</h2>
+    <h6 class="title is-6">1- Ética Descriptiva o Empírica</h6>
+    <h6 class="title is-6">2- Ética Normativa</h6>
+    <h6 class="title is-6">3- Ética Crítica o Metaética</h6>
+    <h6 class="title is-6">4- Ética Aplicada o Ética Práctica</h6>
+    <div class="container">
+      <div class="columns is-centered is-flex-direction-column">
+        <div class="column has-text-centered">
+          <img src="/images/module3/1.jpg" class="layers" />
+        </div>
+        <div class="column has-text-centered">
+          <button class="button is-info bt-prev">Atras</button>
+          <button class="button is-info bt-nex">Siguiente</button>
+        </div>
+      </div>
+    </div>
+    <% if(mod_compl == 2) {%>
+    <div class="block">
+      <button
+        class="button is-primary mt-3 btnTest js-modal-trigger"
+        data-target="modal-js-example"
+      >
+        Prueba tu Conocimiento
+      </button>
+    </div>
+    <%}%>
+  </section>
+  <% if(mod_compl == 2) {%>
+
+  <section class="section sectionTest has-background-primary mt-3">
+    <h1 class="title has-text-grey-dark">Prueba tu conocimiento</h1>
+    <div class="preamble is-justify-content-left">
+      <p class="has-text-grey-dark">
+        A continuacion se te mostrara 4 preguntas y deberas elegir la respuesta
+        correcta entre dos opciones, ademas de esto tendras solo 20 segundos
+        para elegir la respuesta. Exitos.
+      </p>
+      <br />
+      <button class="button btStartTest">Empezar</button>
+    </div>
+  </section>
+
+  <%}%>
+</div>
+<script>
+  let num = 1;
+
+  let layers = document.querySelector(".layers");
+  let btPrev = document.querySelector(".bt-prev");
+  let btNex = document.querySelector(".bt-nex");
+
+  btNex.addEventListener("click", () => {
+    num++;
+    if (num > 6) {
+      num = 1;
+    }
+    layers.setAttribute("src", "/images/module3/" + num + ".jpg");
+  });
+
+  btPrev.addEventListener("click", () => {
+    num--;
+    if (num < 1) {
+      num = 6;
+    }
+    layers.setAttribute("src", "/images/module3/" + num + ".jpg");
+  });
+</script>
+
+<% if(mod_compl == 2) {%>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/trigger-modal.js"></script>
+<script>
+  $(`
+  <style>
+    #continerLoad {
+      opacity: 1;
+      animation: load 1s ease-in infinite;
+    }
+
+    @keyframes load {
+      50% {
+        opacity: 0.2;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+  `).appendTo('head');
+  
+  $(".btnTest").on("click", () => {
+    $(".sectionContent").remove();
+    $(".sectionTest").css("display", "block");
+  });
+  $(".btStartTest").on("click", () => {
+    $(".preamble").remove();
+    let askOne = [
+      `
+    <h5 class="title is-5 has-text-grey-dark">
+        Pregunta 1: No valora ni prescribe lo que es bueno o malo, sino que
+        observa y comprende las normas morales que siguen o han seguido las
+        personas.
+    </h5>
+    `,
+      `
+    <input type="radio" name="answer" id="answer1" />
+    <label for="answer1" class="label1">Etica Normativa</label>
+    <br />
+    <input type="radio" name="answer" id="answer2" />
+    <label for="answer2" class="label2">Etica Descritiva o Empírica</label>
+    `,
+    ];
+    let askTwo = [
+      `
+    <h5 class="title is-5 has-text-grey-dark">
+        Pregunta #2: Su objetivo es encontrar principios generales y racionales 
+        que orienten la conducta moral y que se basen en la razon y no en la fe 
+        o en la tradicion.
+    </h5>
+    `,
+      `
+    <input type="radio" name="answer" id="answer1" />
+    <label for="answer1" class="label1">Etica Normativa</label>
+    <br/>
+    <input type="radio" name="answer" id="answer2" />
+    <label for="answer2" class="label2">Etica Aplicada</label>
+    `,
+    ];
+    let askThree = [
+      `
+    <h5 class="title is-5 has-text-grey-dark">
+        Pregunta #3: No busca establecer normas o principios morales, sino 
+        comprender como usamos y que significan los conceptos y los hechos 
+        morales.
+    </h5>
+    `,
+      `
+    <input type="radio" name="answer" id="answer1" />
+    <label for="answer1" class="label1">Etica Critica</label>
+    <br/>
+    <input type="radio" name="answer" id="answer2" />
+    <label for="answer2" class="label2">Etica Practica</label>
+    `,
+    ];
+    let askFour = [
+      `
+    <h5 class="title is-5 has-text-grey-dark">
+        Pregunta #4: Es una rama de la etica filosofica que propone normas 
+        morales concretas para la vida cotidiana.
+    </h5>
+    `,
+      `
+    <input type="radio" name="answer" id="answer1" />
+    <label for="answer1" class="label1">Etica Empirica</label>
+    <br/>
+    <input type="radio" name="answer" id="answer2" />
+    <label for="answer2" class="label2">Etica Aplicada</label>
+    `,
+    ];
+    let ask = 0;
+    function generateAsk(askText, answer) {
+      $(`
+        <div class="test showAnim">
+        <h4 class="title is-4 time has-text-white">20</h4>
+        ${askText}
+        <h5 class="title is-5 has-text-grey-dark">
+            Seleccione la respuesta correcta:
+        </h5>
+        ${answer}
+        </div>
+        `).appendTo(".sectionTest");
+      let interval = setInterval(() => {
+        $(".time").text(parseInt($(".time").text()) - 1);
+        if ($(".time").text() == "0") {
+          $(`
+          <div id="continerLoad">
+            <h3 class="title is-3">Cargando</h3>
+          </div>
+          `).appendTo(".sectionTest");
+          $.ajax({
+            url: "/modules/module-three",
+            type: "POST",
+            data: {
+              inputOne: $("#answer1").is(":checked"),
+              inputTwo: $("#answer2").is(":checked"),
+              ask: ask,
+            },
+            success: function (response) {
+              $("#continerLoad").remove();
+              if (response.correct) {
+                if (ask != 3) {
+                  $(
+                    '<h3 class="title is-3 has-text-white">Respuesta Correcta</h3>'
+                  ).appendTo(".test");
+                  setTimeout(() => {
+                    ask++;
+                    $(".test").remove();
+                    if (ask == 1) {
+                      generateAsk(askTwo[0], askTwo[1]);
+                    } else if (ask == 2) {
+                      generateAsk(askThree[0], askThree[1]);
+                    } else if (ask == 3) {
+                      generateAsk(askFour[0], askFour[1]);
+                    }
+                  }, 2000);
+                } else {
+                  $(
+                    `
+                    <h3 class="title is-3 has-text-white mt-3">Felicidades ganaste 100 puntos y pasaste este modulo</h3>
+                    <a class="button is-link" href="/modules/module-four">Siguiente Modulo</a>
+                    `
+                  ).appendTo(".test");
+                  $("#score").text(`${response.score}`);
+                  $(".navbar-dropdown").empty();
+                  $(`
+                  <a class="navbar-item" href="/"> Inicio </a>
+                  <hr class="navbar-divider" />
+                  <a class="navbar-item" href="/modules/module-one"> Modulo 1 </a>
+                  <a class="navbar-item" href="/modules/module-two"> Modulo 2 </a>
+                  <a class="navbar-item" href="/modules/module-three"> Modulo 3 </a>
+                  <a class="navbar-item" href="/modules/module-four"> Modulo 4 </a>
+                  <a class="navbar-item <%= mod_compl <=3 ? 'has-background-grey-lighter' : '' %>"> Modulo 5 </a>
+                  <a class="navbar-item <%= mod_compl <=4 ? 'has-background-grey-lighter' : '' %>"> Modulo 6 </a>
+                  <a class="navbar-item <%= mod_compl <=5 ? 'has-background-grey-lighter' : '' %>"> Modulo 7 </a>
+                  `).appendTo(".navbar-dropdown");
+                }
+              } else if (!response.correct) {
+                $("#score").text(`${response.score}`);
+                $(`
+                <h3 class="title is-3 has-text-danger">Respuesta Incorrecta, vuelva a intentarlo</h3>
+                <a class="button is-danger repeat">Volver a intentar</a>
+                `).appendTo(".test");
+                $(".repeat").on("click", () => {
+                  ask = 0;
+                  $(".test").remove();
+                  generateAsk(askOne[0], askOne[1]);
+                });
+              }
+            },
+            error: function (response) {
+              alert("Error al procesar los datos");
+            },
+          });
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+    generateAsk(askOne[0], askOne[1]);
+  });
+</script>
+<%}%> <%- include layouts/footer.ejs %>

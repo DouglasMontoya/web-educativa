@@ -1,0 +1,247 @@
+<%- include layouts/header.ejs %>
+
+<% if(mod_compl == 4) {%>
+<%- include layouts/modal-points.ejs %>
+<%}%>
+
+<div class="container">
+  <section class="section sectionContent">
+    <h2 class="title is-2">
+      Modulo 5 - La Ingenieria Informatica y la Sociedad Actual
+    </h2>
+    <p>
+      Los ingenieros informáticos crean proyectos que resuelven problemas
+      sociales con sus conocimientos. Su trabajo impacta a muchas personas en
+      diferentes ámbitos. Los ingenieros informáticos deben saber de varios
+      temas para dar buenas opiniones y enseñar a usar los sistemas de
+      información. La globalización es la comunicación e influencia entre los
+      países del mundo en lo económico, tecnológico, social y cultural. La
+      globalización produce cambios globales en la sociedad, la economía y la
+      política.
+    </p>
+    <br />
+    <div class="level">
+      <div class="level-item">
+        <img
+          src="/images/img_module5/img1.jpg"
+          alt="Imagen sobre la informatica y la sociedad actual"
+          class="imgModule"
+          width="450px"
+        />
+      </div>
+    </div>
+    <h3 class="title is-3">
+      5.1- Importancia de la ingenieria en la sociedad actual
+    </h3>
+    <p>
+      La importancia de la ingeniería informática en la sociedad actual es muy
+      grande, porque los ingenieros informáticos hacen proyectos que solucionan
+      problemas de emergencia, facilitan la comunicación, rompen barreras,
+      reducen costos, mejoran la toma de decisiones, impulsan el trabajo
+      colaborativo, aumentan las opciones y vías para el aprendizaje y hacen más
+      fácil la gestión y organización. Los ingenieros informáticos también
+      contribuyen al desarrollo de la sociedad al enseñar cómo usar los sistemas
+      de información como una herramienta. Los ingenieros informáticos están
+      presentes en todos los campos de la vida cotidiana y tienen que saber de
+      todo un poco para dar buenas opiniones. La ingeniería informática ofrece
+      grandes oportunidades para la creatividad y la innovación. La ingeniería
+      informática también apoya y acelera el logro de los Objetivos de
+      Desarrollo Sostenible.
+    </p>
+    <br />
+    <div class="level">
+      <div class="level-item">
+        <img
+          src="/images/img_module5/img2.jpg"
+          alt="Imagen sobre la importancia de la informatica en la sociedad actual"
+          class="imgModule"
+          width="450px"
+        />
+      </div>
+    </div>
+    <h3 class="title is-3">
+      5.2 Caracteristicas de la ingenieria informatica en la sociedad actual
+    </h3>
+    <p>
+      1- La ingeniería informática aplica los fundamentos de la ciencia de la
+      computación, la ingeniería en computadores, la ingeniería de sistemas de
+      información, la ingeniería de software, ingeniería de datos, inteligencia
+      artificial y la ingeniería de redes y comunicaciones para el desarrollo de
+      todo tipo de software, hardware y comunicaciones.
+    </p>
+    <br />
+    <p>
+      2- La ingeniería informática es clave en el diseño y producción de grandes
+      proyectos como administración electrónica, gestión de entidades
+      financieras, compras por Internet y medios de transporte sofisticados,
+      entre otros.
+    </p>
+    <br />
+    <p>
+      3- La ingeniería informática crea tecnologías, servicios y productos
+      centrados en las personas. Mejor experiencia de usuario (UX),
+      conectividad, ubicuidad, información enriquecida e inmediatez son
+      características que queremos obtener de la innovación informática.
+    </p>
+    <br />
+    <p>
+      4- La ingeniería informática utiliza innovaciones en esta área como
+      dispositivos inteligentes, interfaces machine-to-machine, Internet de las
+      cosas (IoT), redes y tecnologías 5G, visión por computador, identidades
+      digitales, modelado e impresión 3D, gestión dinámica de contenidos
+      digitales y más.
+    </p>
+    <br />
+    <div class="level">
+      <div class="level-item">
+        <img
+          src="/images/img_module5/img3.jpg"
+          alt="Imagen sobre la importancia de la informatica en la sociedad actual"
+          class="imgModule"
+          width="450px"
+        />
+      </div>
+    </div>
+    <% if(mod_compl == 4) {%>
+    <div class="block">
+      <button class="button is-primary btnTest js-modal-trigger" data-target="modal-js-example">Prueba tu Conocimiento</button>
+    </div>
+    <%}%>
+  </section>
+
+  <% if(mod_compl == 4) {%>
+  <section class="section sectionTest has-background-primary mt-3">
+    <h1 class="title">Prueba tu conocimiento</h1>
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half box mt-2 containerTest">
+          <h4 class="title is-4">Rellena los espacios vacios</h4>
+
+          <label for=""
+            >1- La ingeniería informática aplica los fundamentos de la ciencia
+            de la
+          </label>
+          <input type="text" class="inputText blankSpace1" />
+          <label for=""
+            >, la ingeniería en computadores, la ingeniería de sistemas de
+            información, la ingeniería de software, ingeniería de datos,
+            inteligencia artificial y la ingeniería de
+          </label>
+          <input type="text" class="inputText blankSpace2" />
+          <label for="">y</label>
+          <input type="text" class="inputText blankSpace3" />
+          <label for=""
+            >para el desarrollo de todo tipo de software, hardware y
+            comunicaciones.
+          </label>
+          <br /><br />
+          <label for=""
+            >2- La ingeniería informática también apoya y acelera el logro de
+            los Objetivos de</label
+          >
+          <input type="text" class="inputText blankSpace4" />
+          <br /><br />
+          <label for=""
+            >3- Los ingenieros informáticos deben saber de varios temas para dar
+            buenas</label
+          >
+          <input type="text" class="inputText blankSpace5" />
+          <label for="">y</label>
+          <input type="text" class="inputText blankSpace6" />
+          <label for="">a usar los sistemas de información.</label>
+          <br />
+          <br />
+          <button class="button is-info btnSend">Enviar</button>
+          <h2 class="title is-2 messageAlert"></h2>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%}%>
+</div>
+<% if(mod_compl == 4) {%>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/trigger-modal.js"></script>
+<script>
+  $(".btnTest").on("click", () => {
+    $(".sectionContent").remove();
+    $(".sectionTest").css("display", "block");
+  });
+  $(".btnSend").on("click", () => {
+    let blankSpace1 = document
+      .querySelector(".blankSpace1")
+      .value.trim()
+      .toLowerCase();
+    let blankSpace2 = document
+      .querySelector(".blankSpace2")
+      .value.trim()
+      .toLowerCase();
+    let blankSpace3 = document
+      .querySelector(".blankSpace3")
+      .value.trim()
+      .toLowerCase();
+    let blankSpace4 = document
+      .querySelector(".blankSpace4")
+      .value.trim()
+      .toLowerCase();
+    let blankSpace5 = document
+      .querySelector(".blankSpace5")
+      .value.trim()
+      .toLowerCase();
+    let blankSpace6 = document
+      .querySelector(".blankSpace6")
+      .value.trim()
+      .toLowerCase();
+
+    $('.btnSend').addClass('is-loading');
+
+    $.ajax({
+      url: "/modules/module-five",
+      type: "POST",
+      data: {
+        blank1: blankSpace1,
+        blank2: blankSpace2,
+        blank3: blankSpace3,
+        blank4: blankSpace4,
+        blank5: blankSpace5,
+        blank6: blankSpace6,
+      },
+      success: function (response) {
+        $('.btnSend').removeClass('is-loading');
+        if (response.correct) {
+          $("#score").text(`${response.score}`);
+          $(
+            `
+            <h3 class="title is-3 has-text-primary mt-3">Felicidades ganaste 100 puntos y pasaste este modulo</h3>
+            <a class="button is-link" href="/modules/module-six">Siguiente Modulo</a>
+            `
+          ).appendTo(".containerTest");
+          $(".navbar-dropdown").empty();
+          $(`
+            <a class="navbar-item" href="/"> Inicio </a>
+            <hr class="navbar-divider" />
+            <a class="navbar-item" href="/modules/module-one"> Modulo 1 </a>
+            <a class="navbar-item" href="/modules/module-two"> Modulo 2 </a>
+            <a class="navbar-item" href="/modules/module-three"> Modulo 3 </a>
+            <a class="navbar-item" href="/modules/module-four"> Modulo 4 </a>
+            <a class="navbar-item" href="/modules/module-five"> Modulo 5 </a>
+            <a class="navbar-item" href="/modules/module-six"> Modulo 6 </a>
+            <a class="navbar-item <%= mod_compl <=5 ? 'has-background-grey-lighter' : '' %>"> Modulo 7 </a>
+            `).appendTo(".navbar-dropdown");
+        } else {
+          $("#score").text(`${response.score}`);
+          $(
+            '<h3 class="title is-3 has-text-danger msgWrong">Respuesta Incorrecta, vuelva a intentarlo</h3>'
+          ).appendTo(".containerTest");
+          setTimeout(() => {
+            $(".msgWrong").remove();
+          }, 1500);
+        }
+      },
+      error: function (response) {
+        alert("Error al procesar los datos");
+      },
+    });
+  });
+</script>
+<%}%> <%- include layouts/footer.ejs %>

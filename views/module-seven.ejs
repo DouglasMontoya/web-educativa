@@ -1,0 +1,360 @@
+<%- include layouts/header.ejs %>
+<style>
+  iframe {
+    width: 100%;
+    height: 350px;
+  }
+  .canva {
+    width: 360px;
+    height: 580px;
+    background-color: aliceblue;
+    overflow: hidden;
+    position: relative;
+  }
+  .value {
+    position: absolute;
+    border-radius: 5px;
+    padding: 0px 5px;
+  }
+  .player {
+    position: absolute;
+    top: 420px;
+  }
+  .screenPause {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.589);
+    z-index: 1233423;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .hidden {
+    display: none;
+  }
+  .scoreGame {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .messageAlert {
+    position: absolute;
+    top: 200px;
+    left: 0px;
+    display: none;
+  }
+  .visible {
+    display: block;
+  }
+</style>
+
+<div class="container">
+  <section class="section sectionContent">
+    <h2 class="title is-2">
+      Modulo 7 - Ejercicio Profesional del Ingeniero Informatico
+    </h2>
+    <p>
+      A continuacion se te mostrara un video en el cual tienes que prestar mucha
+      atencion para entenderlo y al final puedas pasar la prueba de lo que
+      aprendiste en este modulo.
+    </p>
+    <div class="container mt-6">
+      <div class="columns">
+        <div class="column">
+          <div class="is-flex is-justify-content-center">
+            <video src="/videos/video3.mp4" class="video" controls></video>
+          </div>
+          <div class="block">
+            <button class="button is-primary mt-3 btnTest">
+              Prueba tu Conocimiento
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section sectionTest has-background-primary mt-3">
+    <h1 class="title">Prueba tu conocimiento</h1>
+    <div class="container has-text-centered">
+      <div class="level has-background-light">
+        <div class="level-item">
+          <div class="canva">
+            <div class="screenPause">
+              <h3 class="title is-3 has-text-white mb-6">
+                En este juego debes tomar los valores que tiene que tener un
+                profesional y debes aculumar 700 puntos para poder pasar el
+                modulo. Buena suerte.
+              </h3>
+              <button class="button is-info btn_start">
+                <strong>INICIAR</strong>
+              </button>
+            </div>
+            <img
+              src="/images/img_game/bg.png"
+              alt="background del juego"
+              class="bg"
+            />
+            <img
+              src="/images/img_game/player.png"
+              alt="jugador"
+              class="player"
+            />
+            <p class="scoreGame is-size-4 m-2"><strong>0000</strong></p>
+            <h3
+              class="title is-3 messageAlert has-text-success has-background-white"
+            >
+              Felicidaes, has completado el ultimo modulo
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="/javascripts/jquery.min.js"></script>
+<script>
+  $(".btnTest").on("click", () => {
+    $(".sectionContent").remove();
+    $(".sectionTest").css("display", "block");
+  });
+  let ethicalValues = [
+    "COMPROMISO",
+    "ÉTICA",
+    "TOLERANCIA",
+    "HUMILDAD",
+    "ESFUERZO",
+    "RESPETO",
+    "HONESTIDAD",
+    "LEALTAD",
+  ];
+
+  let unethicalValues = [
+    "SOBERBIA",
+    "HIPOCRESÍA",
+    "DESCONFIANZA",
+    "EGOÍSMO",
+    "COMPLACENCIA",
+    "ENGAÑO",
+    "CORRUPCION",
+    "NEGLIGENCIA",
+  ];
+
+  let allValues = [];
+  let canva = document.querySelector(".canva");
+  let parrafo = document.getElementById("parrafo");
+
+  var time = new Date();
+  var deltaTime = 0;
+  let quit = false;
+  let player = document.querySelector(".player");
+  let screenPause = document.querySelector(".screenPause");
+  let scoreGame = document.querySelector(".scoreGame");
+  let keyDown = false;
+  let direction = 7;
+  let score = 0;
+  document.addEventListener("keydown", HandleKeyDown);
+  document.addEventListener("keyup", HandleKeyUp);
+  let cont = 0;
+  let speedValues = 3;
+  let scoreReach = false;
+
+  function startGame() {
+    quit = false;
+    if (
+      document.readyState === "complete" ||
+      document.readyState === "interactive"
+    ) {
+      setTimeout(Init, 1);
+    } else {
+      document.addEventListener("DOMContentLoaded", Init);
+    }
+  }
+
+  function HandleKeyDown(ev) {
+    if (ev.keyCode == 37) {
+      keyDown = true;
+      direction = -7;
+    } else if (ev.keyCode == 39) {
+      keyDown = true;
+      direction = 7;
+    }
+  }
+
+  function HandleKeyUp(ev) {
+    if (ev.keyCode == 37) {
+      keyDown = false;
+    } else if (ev.keyCode == 39) {
+      keyDown = false;
+    }
+  }
+
+  function Init() {
+    time = new Date();
+    Loop();
+  }
+
+  function Loop() {
+    deltaTime = (new Date() - time) / 1000;
+    time = new Date();
+    Update();
+    if (quit == false) {
+      requestAnimationFrame(Loop);
+    }
+  }
+
+  let timeSpawnValues = 200;
+  let timeSpawnValuesLimit = 80;
+  let messageAlert = document.querySelector(".messageAlert");
+
+  function Update() {
+    if (cont == 2000) {
+      timeSpawnValuesLimit = 70;
+    } else if (cont == 4000) {
+      timeSpawnValuesLimit = 60;
+      speedValues = 4;
+    } else if (cont == 6000) {
+      timeSpawnValuesLimit = 50;
+    } else if (cont == 8000) {
+      timeSpawnValuesLimit = 40;
+      speedValues = 5;
+    } else if (cont == 10000) {
+      timeSpawnValuesLimit = 30;
+      speedValues = 6;
+    }
+    if (cont < 10000) {
+      cont++;
+    }
+
+    if (timeSpawnValues >= timeSpawnValuesLimit) {
+      createValue();
+      timeSpawnValues = -1;
+    }
+    allValues.forEach((element) => {
+      let posY = window.getComputedStyle(element).getPropertyValue("top");
+      let posX = window.getComputedStyle(element).getPropertyValue("left");
+      posX = "left: " + posX + ";";
+      posY = parseInt(posY.substring(0, posY.length - 2)) + speedValues;
+      posY = "top: " + posY + "px;";
+      let posXY = posX + " " + posY;
+      element.setAttribute("style", posXY);
+    });
+    for (let i = 0; i < allValues.length; i++) {
+      let posY = window.getComputedStyle(allValues[i]).getPropertyValue("top");
+      posY = parseInt(posY.substring(0, posY.length - 2)) + 2;
+      if (posY >= 580) {
+        allValues[i].setAttribute("style", "display: none;");
+        allValues.splice(i, 1);
+        break;
+      }
+    }
+    if (keyDown) {
+      let posX = window.getComputedStyle(player).getPropertyValue("left");
+      posX = parseInt(posX.substring(0, posX.length - 2)) + direction;
+      if (posX > -30 && posX + 68 < 390) {
+        posX = "left: " + posX + "px;";
+        player.setAttribute("style", posX);
+      }
+    }
+    for (let i = 0; i < allValues.length; i++) {
+      let rectValues = allValues[i].getBoundingClientRect();
+      let rectPlayer = player.getBoundingClientRect();
+      if (
+        (rectValues.y + rectValues.height > rectPlayer.y &&
+          rectValues.x < rectPlayer.x &&
+          rectValues.x + rectValues.width > rectPlayer.x + rectPlayer.width) ||
+        (rectValues.x < rectPlayer.x &&
+          rectValues.x + rectValues.width > rectPlayer.x &&
+          rectValues.y + rectValues.height > rectPlayer.y) ||
+        (rectValues.x < rectPlayer.x + rectPlayer.width &&
+          rectValues.x + rectValues.width > rectPlayer.x + rectPlayer.width &&
+          rectValues.y + rectValues.height > rectPlayer.y)
+      ) {
+        if (rectValues.y < rectPlayer.y + rectPlayer.height - 50) {
+          if (allValues[i].classList.contains("has-background-primary")) {
+            score += 10;
+            scoreGame.innerHTML = "<strong> Puntaje " + score + "</strong>";
+          } else {
+            screenPause.classList.remove("hidden");
+            screenPause.children[0].innerHTML =
+              "Has recogido un hecho repudiable";
+            screenPause.children[0].classList.add("has-background-danger");
+            screenPause.children[1].innerHTML = "<strong>REINICIAR</strong>";
+            score = 0;
+            scoreGame.innerHTML = "<strong> Puntaje " + score + "</strong>";
+            allValues.forEach((element) => {
+              element.setAttribute("style", "display: none;");
+            });
+            allValues = [];
+            quit = true;
+            timeSpawnValues = 80;
+            timeSpawnValuesLimit = 80;
+            speedValues = 3;
+            cont = 0;
+            break;
+          }
+          allValues[i].setAttribute("style", "display: none;");
+          allValues.splice(i, 1);
+        }
+      }
+    }
+
+    if (score >= 700 && !scoreReach) {
+      scoreReach = true;
+      $.ajax({
+        url: "/modules/module-seven",
+        type: "POST",
+        success: function (response) {
+          if (!response.passed) {
+            $("#score").text(`${response.score}`);
+            messageAlert.classList.add("visible");
+            setTimeout(() => {
+              messageAlert.classList.remove("visible");
+            }, 2000);
+          }
+        },
+        error: function (response) {
+          alert("Error al procesar los datos");
+        },
+      });
+    }
+
+    timeSpawnValues++;
+  }
+
+  function createValue() {
+    let numRandom = Math.floor(Math.random() * 2);
+    let indexValue = Math.floor(Math.random() * 8);
+    let posX = Math.floor(Math.random() * 240);
+    let value = document.createElement("p");
+    value.classList.add("value");
+    value.classList.add("has-text-white");
+    if (numRandom) {
+      value.innerHTML = ethicalValues[indexValue];
+      value.classList.add("has-background-primary");
+    } else {
+      value.innerHTML = unethicalValues[indexValue];
+      value.classList.add("has-background-danger");
+    }
+    posX = "left: " + posX + "px;";
+    value.setAttribute("style", posX);
+    canva.appendChild(value);
+    allValues.push(value);
+  }
+
+  let btnStart = document.querySelector(".btn_start");
+  btnStart.addEventListener("click", () => {
+    screenPause.classList.add("hidden");
+    startGame();
+  });
+</script>
+
+<%- include layouts/footer.ejs %>

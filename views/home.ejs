@@ -1,0 +1,179 @@
+<%- include layouts/header.ejs %>
+<div class="notification is-success" id="msgClassCreated">
+  La clase se creo correctamente
+</div>
+
+<section class="hero is-fullheight" style="position: relative">
+  <div class="hero-body is-align-items-start">
+    <div class="columns showAnim is-flex-grow-1">
+      <div class="column is-one-quarter">
+        <aside class="menu p-3 box has-background-link-light">
+          <% if (isStudent) {%>
+          <p class="menu-label">Modulos</p>
+          <ul class="menu-list">
+            <li>
+              <a
+                class="<%= id_room == null ? 'has-background-grey-lighter' : '' %>"
+                href="<%= id_room != null ? 'modules/module-one' : '' %>"
+                ><strong>Modulo 1</strong> - Introduccion</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= mod_compl <=0 ? 'has-background-grey-lighter' : '' %>"
+                href="<%= mod_compl >=1 ? 'modules/module-two' : '' %>"
+                ><strong>Modulo 2</strong> - Etica y Moral</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= mod_compl <=1 ? 'has-background-grey-lighter' : '' %>"
+                href="<%= mod_compl >=2 ? 'modules/module-three' : '' %>"
+                ><strong>Modulo 3</strong> - Tareas de la Etica</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= mod_compl <=2 ? 'has-background-grey-lighter' : '' %>"
+                href="<%= mod_compl >=3 ? 'modules/module-four' : '' %>"
+                ><strong>Modulo 4</strong> - La Etica Profesional y los
+                Principios Fundamentales
+              </a>
+            </li>
+            <li>
+              <a
+                class="<%= mod_compl <=3 ? 'has-background-grey-lighter' : '' %>"
+                href="<%= mod_compl >=4 ? 'modules/module-five' : '' %>"
+                ><strong>Modulo 5</strong> - La Ingenieria Informatica y la
+                Sociedad Actual</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= mod_compl <=4 ? 'has-background-grey-lighter' : '' %>"
+                href="<%= mod_compl >=5 ? 'modules/module-six' : '' %>"
+                ><strong>Modulo 6</strong> - Responsabilidad Profesional</a
+              >
+            </li>
+            <li>
+              <a
+                class="<%= mod_compl <=5 ? 'has-background-grey-lighter' : '' %>"
+                href="<%= mod_compl >=6 ? 'modules/module-seven' : '' %>"
+                ><strong>Modulo 7</strong> - Ejercicio Profesional del Ingeniero
+                Informatico</a
+              >
+            </li>
+          </ul>
+          <%}else{%>
+          <p class="menu-label">Clases</p>
+          <ul class="menu-list" id="container-list">
+            <%result.forEach(element=>{%>
+            <li class="item-class">
+              <button class="delete btnDelete" value="<%=element.id%>"></button>
+              <a class="btnClass" data-value="<%=element.id%>"
+                ><%=element.name%></a
+              >
+            </li>
+            <%});%>
+          </ul>
+          <%}%>
+          <hr class="navbar-divider has-background-grey" />
+          <a class="button is-link" href="/logout">Cerrar Sesion</a>
+        </aside>
+      </div>
+      <div class="column">
+        <section class="section box" id="dataTeacher">
+          <h2 class="title is-2 has-text-grey-dark">
+            <%= name %> <%= surname %>
+          </h2>
+          <% if (isStudent) {%>
+          <h4 class="title is-4 has-text-grey-dark">
+            <span class="has-text-link">Codigo de clase</span>
+            <% if(id_room != null) {%> <%= id_room%> <%}else{%> Sin Asignar
+            <%}%>
+          </h4>
+          <h4 class="title is-4 has-text-grey-dark">
+            <span class="has-text-link">Nombre de la clase</span>
+            <% if(id_room != null) {%> <%= nameClass%> <%}else{%> Sin Asignar
+            <%}%>
+          </h4>
+          <% if(id_room == null){%>
+          <a
+            class="button is-primary js-modal-trigger"
+            data-target="modal-js-example"
+            >Agregar Clase</a
+          >
+          <%}%> <%}else{%>
+          <a
+            class="button is-primary js-modal-trigger"
+            data-target="modal-js-example"
+            >Crear Clase</a
+          >
+          <hr class="navbar-divider" />
+          <%}%>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="modal-js-example" class="modal showAnim">
+  <div class="modal-background"></div>
+  <div class="modal-content is-flex is-justify-content-center">
+    <div class="box">
+      <% if (!isStudent) {%>
+      <form
+        class="columns is-flex is-flex-direction-column"
+        id="formCreateClass"
+      >
+        <h3 class="title is-3">Crear Clase</h3>
+        <div class="column">
+          <label for="nameClass">Nombre de la Clase</label>
+          <input
+            class="input is-primary"
+            type="text"
+            placeholder="Nombre de la Clase"
+            name="nameClass"
+            maxlength="50"
+            id="nameClass"
+            required
+          />
+          <button class="button is-success mt-4" type="submit" id="btnCreate">
+            Crear
+          </button>
+        </div>
+      </form>
+      <%}else{%>
+      <form class="columns is-flex is-flex-direction-column" id="formAddClass">
+        <h3 class="title is-3">Agregar Clase</h3>
+        <div class="column">
+          <div class="is-flex is-flex-direction-column">
+            <label for="inputAddClass">Codigo de la Clase</label>
+            <input
+              class="input is-primary mt-2"
+              type="text"
+              placeholder="Codigo de la Clase"
+              name="codeClass"
+              maxlength="4"
+              id="inputAddClass"
+              required
+            />
+          </div>
+          <button class="button is-success mt-4" type="submit" id="btnAdd">
+            Agregar
+          </button>
+        </div>
+      </form>
+      <%}%>
+    </div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<script src="/javascripts/jquery.min.js"></script>
+<script src="javascripts/main.js"></script>
+<script>
+  document.cookie = "session=false";
+</script>
+
+<%- include layouts/footer.ejs %>

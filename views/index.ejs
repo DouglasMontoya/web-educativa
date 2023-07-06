@@ -1,0 +1,109 @@
+<%- include layouts/header.ejs %>
+
+<section class="hero has-background-link is-fullheight-with-navbar">
+  <div class="hero-body">
+    <div class="column is-6">
+      <p class="title has-text-white is-1">Hola, Bienvenido a EduETICA</p>
+      <p class="subtitle has-text-white is-4">
+        El sitio donde aprenderas sobre la etica profesional en general y donde
+        nos adentraremos en ver como se aplica en la ingenieria informatica.
+      </p>
+      <a class="button is-medium is-warning is-rounded" href="/login">
+        Empezar
+      </a>
+    </div>
+
+    <div class="column is-5 is-hidden-touch">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img
+              src="/images/img_index/img0.jpg"
+              alt="Placeholder image"
+              class="imgHero"
+            />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="content-text textImgHero">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            nec iaculis mauris.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/javascripts/jquery.min.js"></script>
+<script>
+  $(`
+    <style>
+    .imgHero {
+        opacity: 0;
+        transition: all 1s ease-in;
+    }
+
+    .card-content {
+        overflow-x: hidden;
+    }
+
+    .content-text {
+        opacity: 0;
+        transition: all 1s ease-in;
+    }
+
+    .showCardHero {
+        opacity: 1;
+        transition: all 1s ease-in;
+    }
+
+    .moveLeft {
+        transform: translateX(-100%);
+        transition: all 1s ease-in;
+    }
+
+    .cont > img {
+        box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.103);
+    }
+    </style>
+    `).appendTo('head');
+  let imgHero = document.querySelector(".imgHero");
+  let textImgHero = document.querySelector(".textImgHero");
+
+  let imagesHero = [
+    "/images/img_index/img0.jpg",
+    "/images/img_index/img1.jpg",
+    "/images/img_index/img2.jpg",
+  ];
+  let textImages = [
+    "Aprenderes sobre la etica vista desde el punto de vista de los valores.",
+    "Conoceras las mejores practicas que debes llevar a cabo para cumplir con la etica profesional.",
+    "Con divertidas pruebas al final de cada modulo permitiendo conocer mas durante el proceso.",
+  ];
+
+  setInterval(changeImage, 7000);
+
+  let i = 1;
+
+  imgHero.setAttribute("src", imagesHero[0]);
+  textImgHero.innerHTML = textImages[0];
+  imgHero.classList.add("showCardHero");
+  textImgHero.classList.add("showCardHero");
+
+  function changeImage() {
+    imgHero.classList.remove("showCardHero");
+    textImgHero.classList.remove("showCardHero");
+    textImgHero.classList.add("moveLeft");
+    setTimeout(function () {
+      imgHero.setAttribute("src", imagesHero[i]);
+      textImgHero.innerHTML = textImages[i];
+      i++;
+      if (i >= 3) {
+        i = 0;
+      }
+      imgHero.classList.add("showCardHero");
+      textImgHero.classList.add("showCardHero");
+      textImgHero.classList.remove("moveLeft");
+    }, 1000);
+  }
+</script>

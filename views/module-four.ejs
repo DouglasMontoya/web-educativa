@@ -1,0 +1,146 @@
+<%- include layouts/header.ejs %>
+
+<% if(mod_compl == 3) {%>
+<%- include layouts/modal-points.ejs %>
+<%}%>
+
+<div class="container">
+  <section class="section sectionContent">
+    <h2 class="title is-2">
+      Modulo 4 - La Etica Profesional y los Principios Fundamentales
+    </h2>
+    <div class="container mt-6">
+      <div class="columns">
+        <div class="column">
+          <div class="is-flex is-justify-content-center">
+            <video src="/videos/video2.mp4" class="video" controls></video>
+          </div>
+          <% if(mod_compl == 3) {%>
+          <div class="block">
+            <button class="button is-primary mt-3 btnTest js-modal-trigger" data-target="modal-js-example">
+              Prueba tu Conocimiento
+            </button>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </section>
+  <% if(mod_compl == 3) {%>
+  <section class="section sectionTest has-background-primary">
+    <h1 class="title">Prueba tu conocimiento</h1>
+    <h4 class="title is-4">
+      Seleccione los 9 principios fundamentales de la etica profesional
+    </h4>
+    <div class="containerTest"></div>
+    <button class="button is-info send">Enviar</button>
+  </section>
+  <%}%>
+</div>
+
+<% if(mod_compl == 3) {%>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/trigger-modal.js"></script>
+<script>
+  $(".btnTest").on("click", () => {
+    $(".sectionContent").remove();
+    $(".sectionTest").css("display", "block");
+  });
+  let containerTest = document.querySelector(".containerTest");
+  let selected = [];
+  let buttons = [];
+
+  let answers = [
+    "Honestidad",
+    "Objetividad",
+    "Independencia",
+    "Confidencialidad",
+    "Venganza",
+    "Cumplimientos de las normas",
+    "Actualizacion de sus conocimientos",
+    "Difusion de su saber",
+    "Orgullo",
+    "Respeto entre colegas",
+    "Apego al codigo de etica de su gremio",
+    "Amor y bondad",
+  ];
+
+  let send = document.querySelector(".send");
+  send.disabled = true;
+
+  for (let i = 0; i < 12; i++) {
+    let button = document.createElement("button");
+    let flag = false;
+    button.classList.add("button");
+    button.classList.add("mr-2");
+    button.classList.add("mb-2");
+    button.innerHTML = answers[i];
+    button.addEventListener("click", () => {
+      if (!flag && selected.length < 9) {
+        button.classList.add("is-warning");
+        flag = true;
+        selected.push(button.innerHTML);
+        if (selected.length == 9) {
+          send.disabled = false;
+        }
+      } else {
+        button.classList.remove("is-warning");
+        for (let i = 0; i < selected.length; i++) {
+          selected = selected.filter((item) => item !== button.innerHTML);
+        }
+        if (selected.length < 9) {
+          send.disabled = true;
+        }
+        flag = false;
+      }
+    });
+    containerTest.appendChild(button);
+    buttons.push(button);
+  }
+  $(".send").on("click", () => {
+    $('.send').addClass('is-loading');
+    $.ajax({
+      url: "/modules/module-four",
+      type: "POST",
+      data: {
+        answers: selected,
+      },
+      success: function (response) {
+        $('.send').removeClass('is-loading');
+        if (!response.correct) {
+          $("#score").text(`${response.score}`);
+          $(
+            '<h3 class="title is-3 has-text-danger msgWrong">Respuesta Incorrecta, vuelva a intentarlo</h3>'
+          ).appendTo(".sectionTest");
+          setTimeout(() => {
+            $(".msgWrong").remove();
+          }, 1500);
+        } else if (response.correct) {
+          $("#score").text(`${response.score}`);
+          $(
+            `
+            <h3 class="title is-3 has-text-white mt-3">Felicidades ganaste 100 puntos y pasaste este modulo</h3>
+            <a class="button is-link" href="/modules/module-five">Siguiente Modulo</a>
+            `
+          ).appendTo(".sectionTest");
+          $(".navbar-dropdown").empty();
+          $(`
+                  <a class="navbar-item" href="/"> Inicio </a>
+                  <hr class="navbar-divider" />
+                  <a class="navbar-item" href="/modules/module-one"> Modulo 1 </a>
+                  <a class="navbar-item" href="/modules/module-two"> Modulo 2 </a>
+                  <a class="navbar-item" href="/modules/module-three"> Modulo 3 </a>
+                  <a class="navbar-item" href="/modules/module-four"> Modulo 4 </a>
+                  <a class="navbar-item" href="/modules/module-five"> Modulo 5 </a>
+                  <a class="navbar-item <%= mod_compl <=4 ? 'has-background-grey-lighter' : '' %>"> Modulo 6 </a>
+                  <a class="navbar-item <%= mod_compl <=5 ? 'has-background-grey-lighter' : '' %>"> Modulo 7 </a>
+                  `).appendTo(".navbar-dropdown");
+        }
+      },
+      error: function (response) {
+        alert("Error al procesar los datos");
+      },
+    });
+  });
+</script>
+<%}%> <%- include layouts/footer.ejs %>
