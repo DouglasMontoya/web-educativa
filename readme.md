@@ -22,10 +22,10 @@ Para instalar y configurar este proyecto, se deben seguir los siguientes pasos:
 4. Instalar las dependencias del proyecto con el comando `npm install` en la terminal desde la carpeta raíz del proyecto.
 5. Crear un archivo ".env" en la carpeta raíz del proyecto y agregar las variables de entorno necesarias para la conexión con la base de datos y el servidor, como por ejemplo:
 
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=1234
-    DB_NAME=db_etica
+`DB_HOST=localhost`
+`DB_USER=root`
+`DB_PASSWORD=1234`
+`DB_NAME=db_etica`
 
 6. Iniciar el servidor con el comando `npm start` en la terminal desde la carpeta raíz del proyecto.
 7. Abrir un navegador web y acceder a la dirección "http://localhost:3000" o la que se haya configurado para abrir el servidor de nodejs.
