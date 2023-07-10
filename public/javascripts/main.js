@@ -221,8 +221,8 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Clas
         }
     </style>
     `).appendTo('head');
-    function generateList(){
-        $('.btnClass').on('click', function(){
+    function generateList() {
+        $('.btnClass').on('click', function () {
             $(`
             <div id="continerLoad">
                 <h3 class="title is-3">Cargando</h3>
@@ -237,13 +237,14 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Clas
                 },
                 success: function (response) {
                     $('#continerLoad').remove();
-                    if($('#containerTable').length){
+                    if ($('#containerTable').length) {
                         $('#containerTable').remove();
                     }
                     $(`
                     <div id="containerTable">
                         <h3 class="title is-3">El codigo de esta clase es ${value}</h3>
-                        <table class="table is-hoverable is-striped is-fullwidth is-bordered">
+                        <button class="button is-info btnPrint mb-3">Imprimir excel</button>
+                        <table class="table is-hoverable is-striped is-fullwidth is-bordered tableData">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -259,6 +260,9 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Clas
                         </table>
                     </div>
                     `).appendTo('#dataTeacher');
+                    $('.btnPrint').on('click', ()=>{
+                        $('.tableData').tblToExcel();
+                    });
                 },
                 error: function (response) {
                     alert('Error al procesar los datos')
@@ -267,7 +271,7 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Clas
         });
     }
 
-    function generateDataStudents(value){
+    function generateDataStudents(value) {
         let result = '';
         value.forEach(element => {
             result += `
@@ -320,7 +324,7 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Clas
                     }
                 })
             });
-            
+
         });
         generateList();
     }
@@ -429,12 +433,12 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Modu
                 url: '/leaveClass',
                 type: 'POST',
                 success: function (response) {
-                    if (response.result){
+                    if (response.result) {
                         window.location.href = '/home';
-                    }else if(response.error){
+                    } else if (response.error) {
                         alert('Error al procesar los datos');
                     }
-                    
+
                 },
                 error: function (response) {
                     alert('Error al procesar los datos')
