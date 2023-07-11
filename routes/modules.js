@@ -130,9 +130,6 @@ router.get('/module-three', function (req, res, next) {
 });
 
 router.post('/module-three', function (req, res, next) {
-    console.log(req.body.inputOne);
-    console.log(req.body.inputTwo);
-    console.log(req.body.ask);
     if (req.body.ask == 0) {
         if (req.body.inputTwo == 'true') {
             res.json({ correct: true });
@@ -207,7 +204,6 @@ router.get('/module-four', function (req, res, next) {
 });
 
 router.post('/module-four', function (req, res, next) {
-    console.log(req.body['answers[]']);
     let answers = [
         "Honestidad",
         "Objetividad",

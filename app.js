@@ -84,17 +84,4 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-const ejsLint = require('ejs-lint');
-const glob = require("glob");
-glob("views/**/*.ejs", (err, files) => {
-  files.forEach((file) => {
-    const errors = ejsLint(file);
-    if (errors) {
-      console.log(errors);
-    }else{
-      console.log("No hay errores");
-    }
-  });
-});
-
 module.exports = app;

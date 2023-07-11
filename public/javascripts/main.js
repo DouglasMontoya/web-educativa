@@ -52,7 +52,6 @@ if ($('title').text() == 'EduETICA - Registrarse') {
     });
 }
 
-// No recargar la pagina de registro si email o dni ya existen
 if ($('title').text() == 'EduETICA - Registrarse') {
     let msgEmailError = document.querySelector('.msgEmailError');
     let msgDniError = document.querySelector('.msgDniError');
@@ -61,7 +60,6 @@ if ($('title').text() == 'EduETICA - Registrarse') {
 
         $('.btnSingup').addClass('is-loading');
 
-        // Obtener los valores de los campos del formulario
         const occupation = $("#formRegister [name='occupation']:checked").val();
         const email = $("#formRegister [name='email']").val();
         const dni = $("#formRegister [name='dni']").val();
@@ -111,12 +109,10 @@ if ($('title').text() == 'EduETICA - Registrarse') {
     })
 }
 
-// No recargar la pagina de registro si email o dni ya existen
 if ($('title').text() == 'EduETICA - Iniciar Sesion') {
     $("#formLogin").on("submit", function (e) {
         e.preventDefault();
 
-        // btnSingup.classList.add('is-loading');
         $('#btnLogin').addClass('is-loading');
 
         // Obtener los valores de los campos del formulario
@@ -147,7 +143,6 @@ if ($('title').text() == 'EduETICA - Iniciar Sesion') {
     })
 }
 
-//Manipular el modal
 if ($('title').text() == 'EduETICA - Inicio') {
     document.addEventListener("DOMContentLoaded", () => {
         // Functions to open and close a modal
@@ -280,7 +275,7 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Clas
                 <td>${element.surname}</td>
                 <td>${element.id}</td>
                 <td>${element.score}</td>
-                <td>${element.mods_completed}/7</td>
+                <td>${element.mods_completed}</td>
             </tr>
             `;
         });
@@ -383,17 +378,9 @@ if ($('title').text() == 'EduETICA - Inicio' && $('.menu-label').text() == 'Modu
             },
             success: function (response) {
                 $('#btnAdd').removeClass('is-loading');
-                // if (response.classAdd) {
-                //     // $('#msgClassCreated').css('display', 'block');
-                //     // setTimeout(() => {
-                //     //     $('#msgClassCreated').css('display', 'none');
-                //     // }, 3000);
-                //     // updateClasses(response.result);
-                // }
                 if (response.error) {
                     alert('Error. El codigo de la clase no existe. Verifique y vuelva a intentarlo');
                 } else if (response.classAdd) {
-                    console.log(response.result);
                     $(`
                     <div class="notification is-success" id="msgClassAdd">
                         La clase se agrego correctamente

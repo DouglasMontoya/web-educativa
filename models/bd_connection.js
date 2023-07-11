@@ -105,15 +105,20 @@ function authUser(email, pass) {
                             console.error('error connecting: ' + error.stack);
                             reject(error);
                         } else {
-                            bcrypt.compare(pass, results[0].pass, function (err, res) {
-                                if (res) {
-                                    occupation = 'teacher';
-                                    resolve({ results: results, occupation: occupation });
-                                } else {
-                                    occupation = 'teacher';
-                                    resolve({ results: [], occupation: occupation });
-                                }
-                            });
+                            if (results.length != 0) {
+                                bcrypt.compare(pass, results[0].pass, function (err, res) {
+                                    if (res) {
+                                        occupation = 'teacher';
+                                        resolve({ results: results, occupation: occupation });
+                                    } else {
+                                        occupation = 'teacher';
+                                        resolve({ results: [], occupation: occupation });
+                                    }
+                                });
+                            } else {
+                                occupation = 'teacher';
+                                resolve({ results: [], occupation: occupation });
+                            }
                         }
                     });
                 } else {
@@ -273,7 +278,6 @@ function deleteClass(id_room, id_teacher) {
 function addClass(code, id_student) {
     return new Promise((resolve, reject) => {
         checkCodeClass(code).then(function (result) {
-            console.log(`aqui ${result}`);
             if (result) {
                 connectDataBase();
                 let strQuery = `UPDATE students SET id_room = '${code}' WHERE students.id = ${id_student};`;
