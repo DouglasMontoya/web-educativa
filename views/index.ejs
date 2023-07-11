@@ -1,4 +1,4 @@
-<%- include layouts/header.ejs %>
+<%- include ("layouts/header.ejs") %>
 
 <section class="hero has-background-link is-fullheight-with-navbar">
   <div class="hero-body">
@@ -66,7 +66,7 @@
         box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.103);
     }
     </style>
-    `).appendTo('head');
+    `).appendTo("head");
   let imgHero = document.querySelector(".imgHero");
   let textImgHero = document.querySelector(".textImgHero");
 
