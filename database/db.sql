@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 06-07-2023 a las 09:21:04
+-- Tiempo de generación: 12-07-2023 a las 18:39:58
 -- Versión del servidor: 8.0.33-0ubuntu0.22.04.2
--- Versión de PHP: 8.1.2-1ubuntu2.11
+-- Versión de PHP: 8.1.2-1ubuntu2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,6 +62,13 @@ CREATE TABLE `students` (
   `id_room` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `surname`, `email`, `pass`, `score`, `mods_completed`, `id_room`) VALUES
+(21547896, 'Roberto', 'Jose', 'roberto@gmail.com', '$2b$10$9QlvxH2NEDEtiQ3nWZy1L.13gG7V7wQCep2FGuIftyIrjeu1OiRLG', 520, 6, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +82,13 @@ CREATE TABLE `teachers` (
   `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `pass` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `name`, `surname`, `email`, `pass`) VALUES
+(25412365, 'Josefina', 'Ramona', 'josefina@gmail.com', '$2b$10$hv4QgpEYd2GEClged5iHu.ScM5QoIRE/uAflO.D3Ori9Q2Q2JtqFm');
 
 --
 -- Índices para tablas volcadas
